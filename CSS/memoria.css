@@ -1,0 +1,88 @@
+main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+header{
+    background-color: aliceblue;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    padding: 8px 16px;
+    font-size: 1.5em;
+}
+
+
+body{
+    background: linear-gradient(#4300be, rgb(22, 3, 129));
+    background-repeat: no-repeat;
+}
+
+h1{
+    color:aliceblue;
+}
+
+.grid{
+    width: 50%;
+    display: grid;
+    margin: 10px auto;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    background-color:rgba(0, 0, 0, 0.555);
+    padding: 10px;
+}
+
+.carta{
+    aspect-ratio: 3/4;
+    width: 100%;
+    background-color: rgb(5, 58, 58);
+    border-radius: 8px;
+    position: relative;
+    transition: all 500ms ease;
+    transform-style: preserve-3d;
+}
+
+.face{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    background-color: rgb(0, 0, 0);
+}
+
+.frente{
+   transform: rotateY(180deg);
+}
+
+.fundo{
+    background-image: url('../img/logo1.png');
+    backface-visibility: hidden;
+}
+
+.revelar_carta{
+    transform: rotateY(180deg);
+}
+
+.carta_bloqueada{
+    filter: saturate(200%);
+}
+
+/*design responsivo*/
+@media(max-width: 720px){
+    .grid{
+        width: 75%;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media(max-width: 460px){
+    .grid{
+        width: 100%;
+    }
+}
