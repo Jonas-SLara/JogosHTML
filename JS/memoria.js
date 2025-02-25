@@ -1,7 +1,4 @@
 const grid = document.querySelector(".grid");
-const span_nome = document.querySelector('.jogador');
-const span_tempoM = document.querySelector('.tempo_m');
-const span_tempoS = document.querySelector('.tempo_s');
 
 const cartas = [
   "1guerraMundial.jpg",
@@ -19,6 +16,7 @@ const cartas = [
 let carta1 = null;
 let carta2 = null;
 let pares_achados = 0;
+let timer = null;
 
 function obterRandomInt(min, max) {
   min = Math.ceil(min);
@@ -33,11 +31,11 @@ const criarElemento = (tag, classe) => {
 };
 
 const checar_fim = () => {
-  if (pares_achados != 10) return;
-
-  clearInterval(this.loop_tempo);
-  alert(`Parabens ${localStorage.getItem('jogador_nome')} você concluiu o jogo com o tempo
-  de ${span_tempoM.innerHTML} : ${span_tempoS.innerHTML}`);
+  if (pares_achados === 10) {
+    alert(`Parabéns ${localStorage.getItem('jogador_nome')} você completou em 
+      ${document.querySelector('.tempo_m').innerHTML}:${document.querySelector('.tempo_s').innerHTML}`);
+    clearInterval(timer);
+  }
 };
 
 //obtem os atributos das 2 cartas, compara, limpa as variaveis das cartas, vira devolta caso sejam diferentes
@@ -122,28 +120,35 @@ const carregarJogo = () => {
   });
 };
 
-const temporizador = ()=>{
-  this.loop_tempo = setInterval(()=>{
-    let segundos = Number(span_tempoS.innerHTML);
 
-    span_tempoS.innerHTML = segundos < 9? '0' + (segundos+1) : segundos+1;
+const escrever_tempo = ()=>{
+  const tempo_s = document.querySelector('.tempo_s');
+  let s = Number(tempo_s.innerHTML);
+  s++;
 
-    if(segundos===60){
-      let minutos = +span_tempoM.innerHTML;
-      span_tempoM.innerHTML = minutos < 9? '0'+ (minutos+1) : minutos+1;
-      span_tempoS.innerHTML='00';
-    }
+  if(s===60){
+    const tempo_m  = document.querySelector('.tempo_m');
+    let m = Number(tempo_m.innerHTML);
+    m++;
+    tempo_s.innerHTML='00';
+    tempo_m.innerHTML = m<10 ? '0' + m : m;
+  }
+  else{
 
-  }, 1000);
+    tempo_s.innerHTML = s<10 ? '0' + s: s;
+  }
 }
 
-//ao carregar a pagina adicione as funções para iniciar o jogo
-window.onload = ()=>{
-  const jogador_nome = localStorage.getItem("jogador_nome");
-  span_nome.innerHTML=jogador_nome;
-
+const inicializacao = ()=>{
+  let nome  = localStorage.getItem("jogador_nome");
+  document.getElementById("jogador").innerHTML=nome;
   duplicar(cartas);
   cartas.forEach(trocarLugares);
   carregarJogo();
-  temporizador();
+  timer = setInterval(escrever_tempo, 1000);//passar a referencia da função e não a função em si como os ()
 }
+
+window.onload = inicializacao();
+
+
+

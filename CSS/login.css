@@ -1,10 +1,36 @@
+.canvas_fundo{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1; /*faz com que o canvas fique atras do form*/
+    background-color: black;
+}
+
 .login-formulario{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: azure;
+    background-color: rgb(59, 2, 82);
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+    z-index: 2;
+}
+
+
+.login_menu{
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 4px;   
+    background-color: rgba(0, 0, 0, 0.781);
+    color: rgb(185, 70, 70);
+    text-align: center;
+    mix-blend-mode:overlay;
+    text-shadow: 2px 2px black;
 }
 
 .login-cabecalho{
@@ -13,14 +39,16 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    background-color: rgb(13, 2, 54);
+    box-shadow:20px 20px 30px rgb(21, 4, 83);
 }
 
 .login-cabecalho h1{
-    color: rgb(27, 27, 27);
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
 }
 .login-nome{
-    width: 90%;
-    max-width: 300px;
+    width: 100%;
     border: 2px solid rgb(27, 27, 27);
     font-size: 1.2em;
     border-radius: 8px;
@@ -33,8 +61,7 @@
     padding: 15px;
     border-radius: 8px;
     background-color: black;
-    width: 90%;
-    max-width: 300px;
+    width: 100%;
     cursor: pointer;
     font-size: 1em;
 }
