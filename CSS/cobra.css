@@ -1,0 +1,12 @@
+canvas{
+    background-color: black;
+}
+body{
+    background-color: rgb(9, 17, 11);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
